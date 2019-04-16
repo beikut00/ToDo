@@ -1,0 +1,56 @@
+{% extends './base.html' %}
+<style type="text/css">
+	li {
+    list-style: none;
+}
+.task-block {
+    margin-left: 35%;
+    margin-right: 35%;
+    max-width: 500px;
+    max-height: 100px;
+    padding: 15px 0 15px 0;
+}
+.item {
+    font-size: 20px;
+    display: flex;
+    padding: 20px 0 20px 0;
+    justify-content: center;
+    height: 25px;
+}
+status {
+    font-size: 20px;
+    max-height: 30px;
+    width: 100px;
+    padding: 15px 0 15px 0;
+    display: flex;
+    justify-content: center;
+    margin-left: 50%;
+    margin-right: 50%;
+}
+</style>
+{% block header %}
+   <h1>TO DO</h1>
+{% endblock %}
+
+{% block content %}
+	{% for todo in todolist %}
+		{% if todo.status == 'done' %}
+			<ul class="task-block">
+				<li class="item" style="color:Yellow">{{ todo.item }}</li>
+				<li class="status">{{ todo.status }}</li>
+			</ul>
+		{% endif %}
+		{% if todo.status == 'avtive' %}
+			<ul class="item-block">
+				<li class="item" style="color:Lime">{{ todo.item }}</li>
+				<li class="status">{{ todo.status }}</li>
+			</ul>
+		{% endif %}
+		{% if todo.status == 'canceled' %}
+			<ul class="item-block">
+				<li class="item" style="color:Black">{{ todo.item  }}</li>
+				<li class="status">{{ todo.status }}</li>
+			</ul>
+		{% endif %}
+	{% endfor %}
+{% endblock %}
